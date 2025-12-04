@@ -15,6 +15,8 @@ const plugins = [
   nodePolyfills({
     globals: {
       Buffer: true,
+      global: true,
+      process: true,
     },
   }),
 ];
