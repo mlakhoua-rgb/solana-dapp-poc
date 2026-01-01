@@ -8,7 +8,11 @@
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions)](https://github.com/mlakhoua-rgb/solana-dapp-poc/actions)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A production-ready proof-of-concept decentralized application (dApp) built on the Solana blockchain. This project demonstrates secure wallet connection, real-time balance tracking, and SOL token transfers on Solana Devnet using a modern cyberpunk-inspired interface.
+**AI-Augmented Web3 Development: Demonstrating Strategic Leadership in Blockchain Applications**
+
+This repository showcases how experienced technical leaders can orchestrate AI agents as collaborators for hands-on Web3 application development while maintaining human ownership of blockchain interactions and production deployments. The project demonstrates production-ready Solana dApp development with AI assistance (Manus AI, Claude, ChatGPT) for accelerated React/TypeScript development, comprehensive testing, and automated architecture documentation—all under strategic human oversight.
+
+**Purpose:** Demonstrate controlled integration of AI agents into Web3 and DevOps workflows, where technical leaders guide AI-assisted component development, code reviews, and testing while retaining accountability for smart contract interactions, security, and production governance.
 
 **Live Demo:** [Coming Soon - Deploying to Vercel]
 
@@ -16,9 +20,43 @@ A production-ready proof-of-concept decentralized application (dApp) built on th
 
 ---
 
+## 🤖 AI-Augmented Development Approach
+
+### Human-AI Collaboration Model
+
+This Web3 application was developed using an **orchestrated AI collaboration model** where experienced technical leaders leverage AI agents for specific development tasks while maintaining strategic oversight and production governance.
+
+**AI Agents Used:**
+- **Manus AI**: Primary agent for hands-on React/TypeScript development, component creation, and testing infrastructure
+- **Claude**: Code review, architecture validation, Web3 security best practices, and technical documentation
+- **ChatGPT**: Rapid prototyping, Solana Web3.js integration, and problem-solving
+- **Gemini**: UI/UX optimization, performance analysis, and documentation generation
+- **Perplexity**: Research on Solana best practices, wallet adapter patterns, and blockchain security
+
+**Human Oversight:**
+- Strategic architecture decisions and technology selection
+- Blockchain interaction design and security validation
+- Production deployment approval and governance
+- Smart contract integration strategy (future phases)
+- User experience design and accessibility standards
+
+### DevOps Best Practices with AI Integration
+
+As DevOps and SRE professionals are **production environment owners, not developers**, this repository demonstrates how AI agents can be integrated into Web3 workflows for:
+
+- **Automated Code Reviews**: AI-assisted validation of React components, TypeScript types, and Solana integration patterns
+- **Testing Automation**: AI-augmented test case generation with human validation of blockchain interactions
+- **Documentation Generation**: AI-powered creation of architecture diagrams, component documentation, and deployment guides
+- **Security Analysis**: Automated security scanning with Snyk, human-reviewed wallet security and transaction validation
+- **Continuous Improvement**: AI-powered analysis of application performance and optimization recommendations
+
+**Key Principle**: Experienced tech leaders orchestrate AI agents and human teams, maintaining accountability for production environments and blockchain interactions that should never be owned by non-humans.
+
+---
+
 ## 🎯 Project Overview
 
-This dApp serves as a foundational template for building Web3 applications on Solana. It provides developers with a working example of wallet integration, balance queries, and transaction execution—three core functionalities required in most blockchain applications.
+This dApp serves as a foundational template for building AI-augmented Web3 applications on Solana. It demonstrates how technical leaders can leverage AI agents for accelerated development while maintaining human oversight of wallet integration, balance queries, and transaction execution—three core functionalities required in most blockchain applications.
 
 **Key Features:**
 - **Wallet Connection**: Multi-wallet support with Phantom wallet adapter
@@ -547,6 +585,10 @@ For issues, questions, or suggestions, please open an issue on the GitHub reposi
 
 ---
 
-**Built with ❤️ by Manus AI**
+**Developed with AI-Augmented Leadership**
+
+This repository demonstrates how experienced technical leaders can orchestrate AI agents (Manus AI, Claude, ChatGPT, Gemini, Perplexity) as collaborators for hands-on Web3 development while maintaining human ownership of blockchain interactions, security validation, and production governance.
+
+**Created by:** Mohamed Ben Lakhoua | [LinkedIn](https://www.linkedin.com/in/benlakhoua/) | [GitHub](https://github.com/mlakhoua-rgb)
 
 *Last Updated: January 2026*
