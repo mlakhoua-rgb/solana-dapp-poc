@@ -1,8 +1,16 @@
 # Solana dApp PoC - Decentralized Transaction Protocol
 
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Solana](https://img.shields.io/badge/Solana-Web3.js-14F195?logo=solana)](https://solana.com/)
+[![Vite](https://img.shields.io/badge/Vite-7.1-646CFF?logo=vite)](https://vitejs.dev/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://www.docker.com/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions)](https://github.com/mlakhoua-rgb/solana-dapp-poc/actions)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 A production-ready proof-of-concept decentralized application (dApp) built on the Solana blockchain. This project demonstrates secure wallet connection, real-time balance tracking, and SOL token transfers on Solana Devnet using a modern cyberpunk-inspired interface.
 
-**Live Demo:** [https://3000-iuijc4bi4d9pp7px9yas1-9b77e973.manusvm.computer](https://3000-iuijc4bi4d9pp7px9yas1-9b77e973.manusvm.computer)
+**Live Demo:** [Coming Soon - Deploying to Vercel]
 
 **GitHub Repository:** [https://github.com/mlakhoua-rgb/solana-dapp-poc](https://github.com/mlakhoua-rgb/solana-dapp-poc)
 
@@ -18,33 +26,25 @@ This dApp serves as a foundational template for building Web3 applications on So
 - **Secure Transfers**: Send SOL to any Solana address with transaction confirmation
 - **Devnet Testing**: Pre-configured for Solana Devnet for safe experimentation
 - **Cyberpunk UI**: Dark-themed interface with neon accents reflecting the high-speed nature of Solana
+- **Docker Support**: Containerized deployment with Docker and Docker Compose
+- **CI/CD Pipeline**: Automated testing and deployment with GitHub Actions
+- **Comprehensive Testing**: Unit tests with Vitest and React Testing Library
 
 ---
 
 ## 🏗️ Architecture Overview
 
-The project follows a client-side React architecture with the following structure:
+The project follows a client-side React architecture with comprehensive testing and deployment automation.
 
-```
-solana-dapp-poc/
-├── client/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── WalletContextProvider.tsx    # Solana wallet adapter setup
-│   │   │   ├── WalletConnect.tsx            # Wallet connection UI
-│   │   │   ├── BalanceDisplay.tsx           # Real-time balance component
-│   │   │   └── TransferForm.tsx             # Token transfer form
-│   │   ├── pages/
-│   │   │   └── Home.tsx                     # Main application page
-│   │   ├── App.tsx                          # Route configuration
-│   │   ├── main.tsx                         # React entry point
-│   │   └── index.css                        # Global styles (Neon Cyber theme)
-│   ├── index.html                           # HTML entry point with polyfills
-│   └── public/                              # Static assets
-├── vite.config.ts                           # Vite build configuration
-├── package.json                             # Dependencies and scripts
-└── README.md                                # This file
-```
+![Architecture Diagram](ARCHITECTURE_DIAGRAM.png)
+
+### Component Architecture
+
+The application is structured around four main layers that work together to provide a seamless Web3 experience. The **User Layer** handles wallet interactions through the Phantom browser extension, while the **Frontend Application** manages state and UI components using React 19 with TypeScript. The **Solana Blockchain** layer communicates with Devnet validators through RPC endpoints for balance queries and transaction submissions. Finally, the **Build & Deploy** layer utilizes Vite for development, Docker for containerization, and Vercel for production hosting.
+
+The component hierarchy begins with the **WalletContextProvider** that wraps the entire application, providing wallet and connection state through React Context. Child components like **WalletConnect**, **BalanceDisplay**, and **TransferForm** consume this context to interact with the Solana blockchain. The **Wouter Router** handles client-side routing between the Home page and 404 error page.
+
+Real-time blockchain interactions are achieved through Solana's RPC methods. The **BalanceDisplay** component uses `getBalance()` for initial balance fetching and `onAccountChange()` for subscribing to live updates. The **TransferForm** component constructs transactions using `SystemProgram.transfer()` and submits them via `sendTransaction()`, with all transaction signing delegated to the Phantom wallet for security.
 
 ---
 
@@ -75,13 +75,19 @@ solana-dapp-poc/
 - **Zod 4.1.12**: TypeScript-first schema validation
 - **@hookform/resolvers 5.2.2**: Integration between React Hook Form and Zod
 
+### Testing
+- **Vitest 2.1.4**: Fast unit testing framework
+- **@testing-library/react**: React component testing utilities
+- **@vitest/coverage-v8**: Code coverage reporting
+
 ### Routing
 - **Wouter 3.3.5**: Lightweight client-side router for React
 
 ### Development Tools
 - **Prettier 3.6.2**: Code formatter
 - **ESBuild 0.25.0**: JavaScript bundler
-- **Vitest 2.1.4**: Unit testing framework
+- **Docker**: Containerization for consistent deployments
+- **GitHub Actions**: CI/CD automation
 
 ---
 
@@ -91,6 +97,7 @@ solana-dapp-poc/
 - **Node.js 18+** or **pnpm 10.4.1+**
 - **Phantom Wallet** or compatible Solana wallet extension
 - **Solana Devnet SOL** (free from [Solana Faucet](https://faucet.solana.com))
+- **Docker** (optional, for containerized deployment)
 
 ### Installation
 
@@ -121,6 +128,58 @@ solana-dapp-poc/
    ```bash
    pnpm start
    ```
+
+### Docker Deployment
+
+1. **Build and run with Docker Compose:**
+   ```bash
+   docker-compose up -d
+   ```
+
+   The application will be available at `http://localhost:3000`
+
+2. **Build Docker image manually:**
+   ```bash
+   docker build -t solana-dapp-poc .
+   docker run -p 3000:80 solana-dapp-poc
+   ```
+
+3. **Run with local Solana test validator:**
+   ```bash
+   docker-compose --profile dev up -d
+   ```
+
+---
+
+## 🧪 Testing
+
+### Run Tests
+
+```bash
+# Run all tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Run tests with coverage
+pnpm test:coverage
+
+# Type checking
+pnpm check
+
+# Format code
+pnpm format
+```
+
+### Test Structure
+
+The project uses **Vitest** for unit testing with **React Testing Library** for component testing. Tests are located in `client/src/__tests__/` and follow the naming convention `*.test.tsx`.
+
+**Test Coverage Goals:**
+- Components: 80%+
+- Utilities: 90%+
+- Overall: 75%+
 
 ---
 
@@ -165,7 +224,6 @@ Renders the wallet connection button with visual feedback.
 - Responsive design with hidden address on mobile
 
 ### BalanceDisplay
-
 **File:** `client/src/components/BalanceDisplay.tsx`
 
 Displays the connected wallet's SOL balance with real-time updates.
@@ -251,7 +309,6 @@ Global theme variables are defined in `client/src/index.css` using OKLCH color s
 ---
 
 ## 🔐 Security Considerations
-
 ### Wallet Security
 - **No Private Key Storage**: The application never stores or handles private keys. All signing is delegated to the wallet extension.
 - **Wallet Adapter Pattern**: Uses the standard Solana Wallet Adapter for secure wallet communication.
@@ -280,44 +337,78 @@ The application leverages the following Solana RPC methods:
 
 ---
 
-## 🧪 Testing
+## 🔗 CI/CD Pipeline
 
-### Development Testing
-```bash
-# Run type checking
-pnpm check
+### GitHub Actions Workflow
 
-# Format code
-pnpm format
+The `.github/workflows/ci-cd.yml` workflow provides comprehensive automation:
 
-# Run tests (when added)
-pnpm test
-```
+**On Pull Request:**
+1. Lint and format checking with Prettier
+2. TypeScript type checking
+3. Unit test execution with coverage reporting
+4. Build verification
+5. Docker image build
+6. Security scanning with Snyk and npm audit
+7. Preview deployment to Vercel
 
-### Manual Testing Checklist
-- [ ] Wallet connection with Phantom
-- [ ] Balance display updates correctly
-- [ ] Transfer form validates recipient address
-- [ ] Transfer form validates amount
-- [ ] Transaction submission succeeds
-- [ ] Transaction signature appears in Solana Explorer
-- [ ] Balance updates after transaction confirmation
-- [ ] Error messages display for invalid inputs
-- [ ] Responsive design works on mobile
+**On Push to Main:**
+1. All PR checks
+2. Docker image push to Docker Hub
+3. Production deployment to Vercel
+
+### Setting Up CI/CD
+
+Add the following secrets to your GitHub repository:
+
+**Required Secrets:**
+- `VERCEL_TOKEN`: Vercel authentication token
+- `VERCEL_ORG_ID`: Vercel organization ID
+- `VERCEL_PROJECT_ID`: Vercel project ID
+
+**Optional Secrets:**
+- `DOCKER_USERNAME`: Docker Hub username
+- `DOCKER_PASSWORD`: Docker Hub password or access token
+- `SNYK_TOKEN`: Snyk security scanning token
 
 ---
 
 ## 🚢 Deployment
 
-### Building for Production
-```bash
-pnpm build
-```
+### Vercel Deployment (Recommended)
 
-This creates an optimized production build in the `dist/public` directory.
+1. **Install Vercel CLI:**
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Login to Vercel:**
+   ```bash
+   vercel login
+   ```
+
+3. **Deploy:**
+   ```bash
+   vercel --prod
+   ```
+
+### Docker Deployment
+
+1. **Build and push to Docker Hub:**
+   ```bash
+   docker build -t yourusername/solana-dapp-poc .
+   docker push yourusername/solana-dapp-poc
+   ```
+
+2. **Deploy to any container platform:**
+   - AWS ECS/Fargate
+   - Google Cloud Run
+   - Azure Container Instances
+   - DigitalOcean App Platform
 
 ### Environment Variables
-The application uses the following environment variables (set automatically in the Manus environment):
+
+The application uses the following environment variables:
 
 ```
 VITE_APP_TITLE=Solana dApp PoC
@@ -341,6 +432,9 @@ VITE_ANALYTICS_WEBSITE_ID=<analytics-id>
 
 ### Issue: Transaction fails with "Blockhash not found"
 **Solution:** This is a temporary network issue. Wait a moment and retry the transaction.
+
+### Issue: Docker build fails
+**Solution:** Ensure Docker is running and you have sufficient disk space. Try `docker system prune` to clean up.
 
 ---
 
@@ -368,6 +462,54 @@ VITE_ANALYTICS_WEBSITE_ID=<analytics-id>
 - Token swap integration
 - Staking interface
 - Multi-sig wallet support
+- Solana program (smart contract) integration
+
+---
+
+## 📁 Project Structure
+
+```
+solana-dapp-poc/
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── WalletContextProvider.tsx
+│   │   │   ├── WalletConnect.tsx
+│   │   │   ├── BalanceDisplay.tsx
+│   │   │   ├── TransferForm.tsx
+│   │   │   └── ui/                    # shadcn/ui components
+│   │   ├── pages/
+│   │   │   ├── Home.tsx
+│   │   │   └── NotFound.tsx
+│   │   ├── __tests__/                 # Test files
+│   │   │   ├── setup.ts
+│   │   │   └── components/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── index.html
+│   └── public/
+├── server/
+│   └── index.ts
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml                  # CI/CD pipeline
+├── Dockerfile                         # Docker configuration
+├── docker-compose.yml                 # Docker Compose setup
+├── nginx.conf                         # Nginx configuration
+├── vitest.config.ts                   # Vitest configuration
+├── vite.config.ts                     # Vite build configuration
+├── package.json
+├── pnpm-lock.yaml
+├── tsconfig.json
+├── ARCHITECTURE_DIAGRAM.mmd           # Architecture diagram (Mermaid)
+├── ARCHITECTURE_DIAGRAM.png           # Architecture diagram (PNG)
+├── ARCHITECTURE.md                    # Detailed architecture docs
+├── CODE_STRUCTURE.md                  # Code structure documentation
+├── DEPENDENCIES.md                    # Dependencies documentation
+├── SETUP.md                           # Setup guide
+└── README.md                          # This file
+```
 
 ---
 
@@ -379,25 +521,23 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 👨‍💻 Development
 
-### Project Structure
-- **Frontend**: React 19 with TypeScript
-- **Styling**: Tailwind CSS 4 with custom Neon theme
-- **Build Tool**: Vite with Node.js polyfills
-- **Package Manager**: pnpm
-
 ### Code Style
 - TypeScript for type safety
 - Functional components with React hooks
 - Tailwind utility classes for styling
 - Component-based architecture
+- Comprehensive test coverage
 
 ### Contributing
 Contributions are welcome! Please follow these guidelines:
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+3. Write tests for new features
+4. Ensure all tests pass (`pnpm test`)
+5. Format code (`pnpm format`)
+6. Commit changes (`git commit -m 'Add amazing feature'`)
+7. Push to branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
 
 ---
 
@@ -409,4 +549,4 @@ For issues, questions, or suggestions, please open an issue on the GitHub reposi
 
 **Built with ❤️ by Manus AI**
 
-*Last Updated: December 2025*
+*Last Updated: January 2026*

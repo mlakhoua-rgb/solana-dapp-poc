@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  solana-dapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: solana-dapp-poc
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Optional: Add Solana test validator for local development
+  solana-validator:
+    image: solanalabs/solana:v1.18.0
+    container_name: solana-test-validator
+    command: solana-test-validator --reset
+    ports:
+      - "8899:8899"
+      - "8900:8900"
+      - "9900:9900"
+    restart: unless-stopped
+    profiles:
+      - dev
+
+networks:
+  default:
+    name: solana-dapp-network

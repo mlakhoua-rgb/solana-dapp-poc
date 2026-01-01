@@ -1,0 +1,101 @@
+graph TB
+    subgraph "User Layer"
+        User[User Browser]
+        Wallet[Phantom Wallet<br/>Extension]
+    end
+
+    subgraph "Frontend Application - React 19 + TypeScript"
+        subgraph "Components"
+            WCP[WalletContextProvider<br/>Wallet Adapter Setup]
+            WC[WalletConnect<br/>Connection UI]
+            BD[BalanceDisplay<br/>Real-time Balance]
+            TF[TransferForm<br/>Token Transfer]
+        end
+
+        subgraph "Pages"
+            Home[Home Page<br/>Main Application]
+            NotFound[404 Page]
+        end
+
+        subgraph "Routing"
+            Router[Wouter Router<br/>Client-side Routing]
+        end
+
+        subgraph "State Management"
+            WalletState[Wallet State<br/>React Context]
+            ConnectionState[Connection State<br/>React Context]
+        end
+    end
+
+    subgraph "Solana Blockchain"
+        subgraph "Devnet"
+            RPC[Solana RPC Endpoint<br/>api.devnet.solana.com]
+            Validator[Solana Validators]
+            Blockchain[Solana Blockchain<br/>Transactions & Accounts]
+        end
+    end
+
+    subgraph "Build & Deploy"
+        Vite[Vite Build Tool<br/>Development Server]
+        Docker[Docker Container<br/>Nginx Server]
+        Vercel[Vercel Deployment<br/>Production Hosting]
+    end
+
+    subgraph "CI/CD Pipeline"
+        GHA[GitHub Actions<br/>Automated Testing & Deployment]
+        Tests[Vitest Unit Tests]
+        Security[Security Scans<br/>Snyk & npm audit]
+    end
+
+    %% User interactions
+    User -->|Opens dApp| Home
+    User -->|Clicks Connect| WC
+    WC -->|Triggers| Wallet
+    Wallet -->|Approves Connection| WalletState
+    
+    %% Component relationships
+    Home --> WCP
+    WCP --> WC
+    WCP --> BD
+    WCP --> TF
+    Router -.->|Routes| Home
+    Router -.->|Routes| NotFound
+    
+    %% State management
+    WCP -->|Provides Context| WalletState
+    WCP -->|Provides Context| ConnectionState
+    WalletState -->|Used by| BD
+    WalletState -->|Used by| TF
+    ConnectionState -->|Used by| BD
+    ConnectionState -->|Used by| TF
+    
+    %% Blockchain interactions
+    BD -->|getBalance| RPC
+    BD -->|onAccountChange| RPC
+    TF -->|sendTransaction| RPC
+    RPC -->|Queries/Transactions| Validator
+    Validator -->|Consensus| Blockchain
+    Blockchain -->|Updates| RPC
+    
+    %% Wallet signing
+    TF -->|Request Signature| Wallet
+    Wallet -->|Signed Transaction| TF
+    
+    %% Build & Deploy flow
+    Vite -.->|Development| User
+    Docker -.->|Containerized| Vercel
+    Vercel -.->|Production| User
+    
+    %% CI/CD flow
+    GHA -->|Runs| Tests
+    GHA -->|Runs| Security
+    GHA -->|Deploys to| Vercel
+    GHA -->|Builds| Docker
+
+    style User fill:#14F195,stroke:#333,stroke-width:2px
+    style Wallet fill:#9945FF,stroke:#333,stroke-width:2px
+    style RPC fill:#14F195,stroke:#333,stroke-width:2px
+    style Blockchain fill:#14F195,stroke:#333,stroke-width:2px
+    style Vercel fill:#000,stroke:#fff,stroke-width:2px
+    style Docker fill:#2496ED,stroke:#333,stroke-width:2px
+    style GHA fill:#2088FF,stroke:#333,stroke-width:2px
