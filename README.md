@@ -1,4 +1,4 @@
-# Solana dApp PoC - Decentralized Transaction Protocol
+# Solana dApp PoC - Decentral# Solana dApp - Proof of Concept
 
 [![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?logo=typescript)](https://www.typescriptlang.org/)
@@ -7,6 +7,9 @@
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://www.docker.com/)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions)](https://github.com/mlakhoua-rgb/solana-dapp-poc/actions)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/mlakhoua-rgb/solana-dapp-poc?style=social)](https://github.com/mlakhoua-rgb/solana-dapp-poc/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/mlakhoua-rgb/solana-dapp-poc?style=social)](https://github.com/mlakhoua-rgb/solana-dapp-poc/network/members)
+[![AI-Augmented](https://img.shields.io/badge/AI--Augmented-Manus%20AI-blueviolet)](https://www.manus.im/)
 
 **AI-Augmented Web3 Development: Demonstrating Strategic Leadership in Blockchain Applications**
 
